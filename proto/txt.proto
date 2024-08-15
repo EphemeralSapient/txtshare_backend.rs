@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package txt;
+
+
+service Txt {
+    rpc Upload(UploadRequest) returns (TxtResult);
+    rpc Delete(TxtURL) returns (TxtResultState);
+    rpc Get(TxtURL) returns (TxtResult);
+    rpc Update(TxtUpdate) returns (TxtResult);
+}
+
+message UploadRequest {
+    string fileName = 1; // Required field
+    string fileData = 2; // Required field
+    string password = 3; // Optional
+    string category = 4; // General, Programming, etc.
+    string fileType = 5; // txt, md, json, etc.
+    string expire = 6; // Once, 1 week / year or so on
+}
+
+message TxtResult {
+    string urlCode = 1; // Short 7 character code
+    FileDetail fileDetail = 2; 
+    string fileTxt = 3; // File data that was uploaded
+}
+
+message FileDetail {
+    string commit_id = 1; // SHA-1 commit id
+    string created = 2; // Created timestamp and date
+    string expire = 3; // Expire timestamp and date
+    string type = 4; // txt, md, json, etc.
+    string category = 5; // General, Programming, etc.
+    optional int32 linked_account_id = 6; // Account id that uploaded the file [one that uploaded with token]
+    bool burn = 7; // If true, file will be deleted after first view
+}
+
+message TxtURL {
+    string urlCode = 1; // Required field
+}
+
+message TxtUpdate {
+    string urlCode = 1; // Required field
+    UploadRequest newDetails = 2; // Required field
+}
+
+message TxtResultState {
+    bool success = 1;
+    string message = 2;
+}

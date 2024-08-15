@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package auth;
+
+service Auth {
+    rpc InitiateOAuth (OAuthInit) returns (OAuthURL);
+    rpc CallbackOAuth (OAuthCallback) returns (OAuthResult);
+}
+
+message OAuthInit {
+    // Nothing requires to be supplied
+}
+
+message OAuthURL {
+    string url = 1; // Redirect URL
+}
+
+message OAuthCallback {
+    string code = 1; // OAuth code
+}
+
+message OAuthResult {
+    string token = 1; // Access token for the user
+}

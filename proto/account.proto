@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package account;
+
+service Account {
+    rpc GetDetails (AccountQuery) returns (AccountDetails);
+    rpc UpdateDetails (AccountDetails) returns (AccountResult);
+}
+
+message AccountQuery {
+    int32 accountId = 1; // Required field
+}
+
+message AccountResult {
+    bool success = 1;
+    string message = 2;
+}
+
+message AccountDetails {
+    int32 accountId = 1; // Required field [can't be changed]
+    string username = 2; // Required field 
+    string created = 3; // Required field [can't be changed]
+    repeated string txtFiles = 4; // List of txt files uploaded by the user and it is supplied in the form of `urlCode` [can't be changed]
+}
+

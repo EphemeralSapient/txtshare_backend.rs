@@ -1,0 +1,39 @@
+[package]
+name = "backend_rs"
+version = "0.1.0"
+edition = "2021"
+
+
+[[bin]] # Bin to run the gRPC server
+name = "server"
+path = "src/main.rs"
+
+
+[dependencies]
+
+tonic = "0.12.1"
+tokio = { version = "1.39.2", features = ["macros", "rt-multi-thread"] }
+prost = "0.13.1"
+tokio-postgres = { version = "0.7.11", features = ["with-time-0_3"]}
+once_cell = "1.19.0"
+dotenv = "0.15.0"
+time = "0.3.36"
+sha2 = "0.10.8"
+jsonwebtoken = "9.3.0"
+serde_json = "1.0.124"
+rand = "0.8.5"
+form_urlencoded = "1.2.1"
+reqwest = "0.12.5"
+
+
+[build-dependencies]
+tonic-build = "0.12"
+
+[profile.release]
+lto = true
+codegen-units = 1
+opt-level = 3
+panic = "abort"
+
+[build]
+rustflags = ["-C", "target-cpu=native"]
