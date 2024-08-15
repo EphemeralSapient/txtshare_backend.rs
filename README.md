@@ -1,3 +1,5 @@
+[![Rust](https://github.com/EphemeralSapient/txtshare_backend.rs/actions/workflows/rust.yml/badge.svg?branch=main)](https://github.com/EphemeralSapient/txtshare_backend.rs/actions/workflows/rust.yml)
+
 ## Remake
 
 This repo basically attempt of re-do existing [backend](https://raw.githubusercontent.com/EphemeralSapient/txtshare_backend/main/README.md) written in Express.js to Rust with gRPC.
