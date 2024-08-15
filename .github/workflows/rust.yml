@@ -19,12 +19,10 @@ jobs:
     - name: Install protoc
       run: sudo apt-get install protobuf-compiler
     - name: Build
-      run: cargo build --bin server --release --verbose
-    - name: Zip
-      run: zip -j server.zip target/release/server
+      run: cargo build --bin server --release
     - name: Upload
       uses: actions/upload-artifact@v4
       with:
         name: server
-        path: server.zip
+        path: target/release/server
         compression-level: 9
