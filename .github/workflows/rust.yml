@@ -32,5 +32,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: server-${{ matrix.os }}
-        path: target/release/server${{ matrix.os == 'windows-latest' && '.exe' || '' }} # Conditional .exe
+        path: ${{ matrix.os == 'windows-latest' && 'target\release\server.exe' || 'target/release/server' }} # Conditional for windows
         compression-level: 9
