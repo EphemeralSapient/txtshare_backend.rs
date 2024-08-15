@@ -23,7 +23,7 @@ jobs:
     - name: Zip
       run: zip -j server.zip target/release/server
     - name: Upload
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: server
         path: server.zip
