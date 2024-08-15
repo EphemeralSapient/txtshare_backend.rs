@@ -27,3 +27,4 @@ jobs:
       with:
         name: server
         path: server.zip
+        compression-level: 9
