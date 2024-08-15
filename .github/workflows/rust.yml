@@ -21,9 +21,15 @@ jobs:
     - uses: actions/checkout@v4
 
     # Install protoc if needed
-    - name: Install protoc
+    - name: Install protoc Linux
       if: matrix.os == 'ubuntu-latest'
       run: sudo apt-get install protobuf-compiler
+    - name: Install protoc MacOS
+      if: matrix.os == 'macos-latest'
+      run: brew install protobuf
+    - name: Install protoc Windows
+      if: matrix.os == 'windows-latest'
+      run: winget install --id Google.Protobuf --source winget
 
     - name: Build
       run: cargo build --bin server --release
