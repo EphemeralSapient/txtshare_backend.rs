@@ -17,4 +17,4 @@ I was interested in Rust for benchmark ( yet to do benchmark between existing an
 
 I'm not sure when I'll add redis support but then kinda eager to deploy this on GCP with free tier [PostgreSQL on micro E2 free tier and deploy this on app engine]
 
-Docker support is on next TODO list
+Docker support is added, next is Rate limit and Redis support on TODO list

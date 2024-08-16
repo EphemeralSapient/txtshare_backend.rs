@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  app:
+    build: . # Build from existing Dockerfile
+    ports:
+      - '4321:4321' # Expose port for the application
+    depends_on:
+      - redis
+      - postgres
+    environment:
+      # REDIS_HOST: redis
+      POSTGRES_HOST: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres 
+      POSTGRES_DB: txtshare
+
+  # redis:
+  #   image: redis:alpine
+  #   ports:
+  #     - '6379:6379' # Expose Redis port
+  #   volumes:
+  #     - redis-data:/data # Persist data
+
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: postgres 
+      POSTGRES_PASSWORD: postgres 
+      POSTGRES_DB: txtshare
+    volumes:
+      - postgres-data:/var/lib/postgresql/data # Persist data
+    # Automatically initializes the database with init.sql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  # redis-data:
+  postgres-data:
