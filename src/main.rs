@@ -13,7 +13,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     dotenv().ok();
 
     let postgres_url = env::var("POSTGRES").unwrap();
-    let addr = format!("[::1]:{}", env::var("PORT").unwrap_or("4321".to_string())).parse()?; // Hosting the server 
+    let addr = format!("127.0.0.1:{}", env::var("PORT").unwrap_or("4321".to_string())).parse()?; // Hosting the server 
 
     // Init the postgres connection
     controllers::init_db_connection(postgres_url).await?;
